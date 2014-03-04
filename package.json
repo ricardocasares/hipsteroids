@@ -1,0 +1,20 @@
+{
+  "name": "hipster",
+  "version": "0.0.1",
+  "description": "Hipster tools for building angular apps",
+  "scripts": {
+    "start": "./node_modules/.bin/gulp"
+  },
+  "devDependencies": {
+    "gulp": "latest",
+    "gulp-bower": "latest",
+    "gulp-coffee": "latest",
+    "gulp-concat": "latest",
+    "gulp-connect": "latest",
+    "gulp-jade": "latest",
+    "gulp-serve": "latest",
+    "gulp-stylus": "latest",
+    "gulp-uglify": "latest"
+  },
+  "license": "MIT"
+}

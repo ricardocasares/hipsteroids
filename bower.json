@@ -1,0 +1,17 @@
+{
+  "name": "hipster",
+  "version": "0.0.1",
+  "authors": [
+    "Ricardo Casares <ricardocasares@gmail.com>"
+  ],
+  "description": "Hipster tools for building angular apps",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "latest",
+    "angular-route": "latest",
+    "firebase": "latest",
+    "angularfire": "latest",
+    "bootstrap": "latest",
+    "jquery": "2.0.3"
+  }
+}
