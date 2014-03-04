@@ -11,6 +11,10 @@ It stores data on Firebase, through the firebase factory and services.
 
 Everything is build then using GulpJS, who takes care of bower dependencies, compiling coffee, jade and stylus.
 
+Demo
+====
+Take a look at https://hipsteroids.firebaseapp.com
+
 Install
 =======
 Installation process is rather simple, since Gulp should be taking care of everything.
