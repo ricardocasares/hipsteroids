@@ -25,7 +25,7 @@ Installation process is rather simple, since Gulp should be taking care of every
 If everything went ok, you should have a new directory called `build`, where all the static files are stored.
 Plus, you should have a server running on http://localhost:3000.
 
-The server is seup with livereload, so any change you make on the `src` folder should be reflected on the `build` folder and automatically refresh your browser.
+The server is setup with livereload, so any change you make on the `src` folder should be reflected on the `build` folder and automatically refresh your browser.
 
 ### Configure
 You can configure your Firebase instance and constants in `src/app/config.coffee`
