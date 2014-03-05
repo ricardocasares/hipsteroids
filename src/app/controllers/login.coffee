@@ -1,5 +1,5 @@
 angular.module 'hipster'
-.controller 'LoginCtlr', ($scope, simpleLogin, $location) ->
+.controller 'LoginCtrl', ($scope, simpleLogin, $location) ->
   
   $scope.pass = null
   $scope.err = null
@@ -40,8 +40,11 @@ angular.module 'hipster'
       simpleLogin.createAccount $scope.email, $scope.pass, (err, user) ->
         if err
           $scope.err = (if err then err + '' else null)
+          return
         else
           # must be logged in before I can write to my profile
           $scope.login ->
-            simpleLogin.createProfile user.uid, user.email
+            simpleLogin.createProfile user.id, user.email
             $location.path '/account'
+    return
+

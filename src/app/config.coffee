@@ -1,4 +1,4 @@
-angular.module 'hipster', ['firebase','ngRoute']
+angular.module 'hipster.config', ['firebase','ngRoute']
 .constant 'loginRedirectPath', '/login'
 .constant 'loginProviders', 'facebook,twitter,password'
 .constant 'FBURL', 'https://hipsteroids.firebaseio.com'

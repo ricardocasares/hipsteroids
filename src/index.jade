@@ -21,21 +21,21 @@ body(ng-app="hipster")
                   li(ng-class="{ active: active('/about') }")
                     a(href="#/about") About
               .navbar-right
-                .navbar-right(ng-show="active('/')")
+                .navbar-right(ng-show-auth="logout")
                   a(href="#/login").btn.btn-default.navbar-btn Sign in
                   p.navbar-text.navbar-right
                     | Or, 
                     a(href="#") create an account
-                .navbar-right(ng-show="!active('/')")
-                  a.navbar-right.btn.btn-default.navbar-btn Log out
-  div(ng-view)
+                .navbar-right(ng-show-auth="login")
+                  a(ng-controller="LoginCtrl", ng-click="logout()").btn.btn-default.navbar-btn Log out
+  div(ng-view, ng-cloak='ng-cloak')
   
   script(type="text/javascript", src="/components/jquery/jquery.min.js")
   script(type="text/javascript", src="/components/bootstrap/dist/js/bootstrap.min.js")
   script(type="text/javascript", src="/components/firebase/firebase.js")
   script(type="text/javascript", src="/components/firebase-simple-login/firebase-simple-login.js")
   script(type="text/javascript", src="/components/angular/angular.js")
-  script(type="text/javascript", src="/components/angularfire/angularfire.min.js")
+  script(type="text/javascript", src="/components/angularfire/angularfire.js")
   script(type="text/javascript", src="/components/angular-route/angular-route.min.js")
   script(type="text/javascript", src="/app/app.js")
   script(type="text/javascript", src="/app/config.js")
@@ -45,3 +45,5 @@ body(ng-app="hipster")
   script(type="text/javascript", src="/app/controllers/nav.js")
   script(type="text/javascript", src="/app/controllers/posts.js")
   script(type="text/javascript", src="/app/controllers/about.js")
+  script(type="text/javascript", src="/app/controllers/login.js")
+  script(type="text/javascript", src="/app/directives/auth.js")

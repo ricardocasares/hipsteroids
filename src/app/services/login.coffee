@@ -1,22 +1,17 @@
-angular.module 'hipster.login', [
-  'firebase'
-  'angularfire.firebase'
-]
-
-.run((simpleLogin) ->
+angular.module("hipster", [
+  "firebase"
+  "hipster.services.firebaseref"
+  "hipster.config"
+]).run((simpleLogin) ->
   simpleLogin.init()
   return
-)
-
-.factory 'simpleLogin', ($rootScope, $firebaseSimpleLogin, firebaseRef, profileCreator, $timeout) ->
-  
+).factory("simpleLogin", ($rootScope, $firebaseSimpleLogin, firebaseRef, profileCreator, $timeout) ->
   assertAuth = ->
-    throw new Error('Must call loginService.init() before using its methods')  if auth is null
+    throw new Error("Must call loginService.init() before using its methods")  if auth is null
     return
   auth = null
-
   init: ->
-    auth = $firebaseSimpleLogin(firebaseRef())
+    auth = $firebaseSimpleLogin(firebaseRef.path(''))
     auth
 
   logout: ->
@@ -40,7 +35,7 @@ angular.module 'hipster.login', [
 
   loginPassword: (email, pass, callback) ->
     assertAuth()
-    auth.$login('password',
+    auth.$login("password",
       email: email
       password: pass
       rememberMe: true
@@ -60,12 +55,12 @@ angular.module 'hipster.login', [
 
     if not opts.oldpass or not opts.newpass
       $timeout ->
-        cb 'Please enter a password'
+        cb "Please enter a password"
         return
 
     else if opts.newpass isnt opts.confirm
       $timeout ->
-        cb 'Passwords do not match'
+        cb "Passwords do not match"
         return
 
     else
@@ -84,19 +79,22 @@ angular.module 'hipster.login', [
     return
 
   createProfile: profileCreator
-
-.factory 'profileCreator', (firebaseRef, $timeout) ->
+).factory "profileCreator", (firebaseRef, $timeout) ->
   (id, email, callback) ->
     firstPartOfEmail = (email) ->
-      ucfirst email.substr(0, email.indexOf('@')) or ''
+      ucfirst email.substr(0, email.indexOf("@")) or ""
     ucfirst = (str) ->
-      str += ''
+      
+      # credits: http://kevin.vanzonneveld.net
+      str += ""
       f = str.charAt(0).toUpperCase()
       f + str.substr(1)
-    firebaseRef('users/' + id).set
+    firebaseRef.path("users/" + id).set
       email: email
       name: firstPartOfEmail(email)
     , (err) ->
+      
+      #err && console.error(err);
       if callback
         $timeout ->
           callback err
