@@ -13,5 +13,8 @@
     "angularfire": "latest",
     "bootstrap": "latest",
     "jquery": "2.0.3"
+  },
+  "devDependencies": {
+    "angular-mocks": "latest"
   }
 }

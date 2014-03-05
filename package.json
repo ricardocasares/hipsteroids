@@ -14,7 +14,12 @@
     "gulp-jade": "latest",
     "gulp-serve": "latest",
     "gulp-stylus": "latest",
-    "gulp-uglify": "latest"
+    "gulp-uglify": "latest",
+    "phantomjs": "latest",
+    "karma": "latest",
+    "karma-junit-reporter": "latest",
+    "karma-jasmine": "latest",
+    "protractor": "latest"
   },
   "license": "MIT"
 }
