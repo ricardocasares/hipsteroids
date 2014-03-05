@@ -1,40 +1,107 @@
-angular.module 'hipster.services.login', [
-  'hipster.services.profile'
+angular.module 'hipster.login', [
+  'firebase'
+  'angularfire.firebase'
 ]
-.factory 'loginSvc', [
-  'angularFireAuth'
-  'profileSvc'
-  '$location'
-  '$rootScope'
-  (angularFireAuth, profileSvc, $location, $rootScope) ->
-    return (
-      login: (email, pass, redirect, callback) ->
-        p = angularFireAuth.login('password',
-          email: email
-          password: pass
-          rememberMe: true
-        )
-        p.then ((user) ->
-          $location.path redirect  if redirect
-          callback and callback(null, user)
+
+.run((simpleLogin) ->
+  simpleLogin.init()
+  return
+)
+
+.factory 'simpleLogin', ($rootScope, $firebaseSimpleLogin, firebaseRef, profileCreator, $timeout) ->
+  
+  assertAuth = ->
+    throw new Error('Must call loginService.init() before using its methods')  if auth is null
+    return
+  auth = null
+
+  init: ->
+    auth = $firebaseSimpleLogin(firebaseRef())
+    auth
+
+  logout: ->
+    assertAuth()
+    auth.$logout()
+    return
+
+  login: (provider, callback) ->
+    assertAuth()
+    auth.$login(provider,
+      rememberMe: true
+    ).then ((user) ->
+      if callback
+        $timeout ->
+          callback null, user
           return
-        ), callback
-        return
 
-      logout: (redirectPath) ->
-        angularFireAuth.logout()
-        $location.path redirectPath  if redirectPath
-        return
+      return
+    ), callback
+    return
 
-      createAccount: (name, email, pass, callback) ->
-        angularFireAuth._authClient.createUser email, pass, (err, user) ->
-          if callback
-            callback err, user
-            $rootScope.$apply()
+  loginPassword: (email, pass, callback) ->
+    assertAuth()
+    auth.$login('password',
+      email: email
+      password: pass
+      rememberMe: true
+    ).then ((user) ->
+      if callback
+        $timeout ->
+          callback null, user
           return
 
+      return
+    ), callback
+    return
+
+  changePassword: (opts) ->
+    assertAuth()
+    cb = opts.callback or ->
+
+    if not opts.oldpass or not opts.newpass
+      $timeout ->
+        cb 'Please enter a password'
         return
 
-      createProfile: profileCreator
-    )
-]
+    else if opts.newpass isnt opts.confirm
+      $timeout ->
+        cb 'Passwords do not match'
+        return
+
+    else
+      auth.$changePassword(opts.email, opts.oldpass, opts.newpass).then (->
+        cb null
+        return
+      ), cb
+    return
+
+  createAccount: (email, pass, callback) ->
+    assertAuth()
+    auth.$createUser(email, pass).then ((user) ->
+      callback null, user
+      return
+    ), callback
+    return
+
+  createProfile: profileCreator
+
+.factory 'profileCreator', (firebaseRef, $timeout) ->
+  (id, email, callback) ->
+    firstPartOfEmail = (email) ->
+      ucfirst email.substr(0, email.indexOf('@')) or ''
+    ucfirst = (str) ->
+      str += ''
+      f = str.charAt(0).toUpperCase()
+      f + str.substr(1)
+    firebaseRef('users/' + id).set
+      email: email
+      name: firstPartOfEmail(email)
+    , (err) ->
+      if callback
+        $timeout ->
+          callback err
+          return
+
+      return
+
+    return

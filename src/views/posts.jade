@@ -9,7 +9,7 @@
         .form-group
           label(for='body') Body
           textarea#body.form-control(ng-model='new.body',name='body',placeholder="Enter post body")
-        button.btn.btn-default(ng-click='savePost()',type='submit') Submit 
+        button.btn.btn-default(ng-click='savePost(new)',type='submit') Submit 
         
     .col-xs-12.col-sm-12.col-md-9.col-lg-9
       h3.page-header Recent posts

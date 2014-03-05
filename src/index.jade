@@ -20,14 +20,23 @@ body(ng-app="hipster")
                     a(href="#/posts") Posts
                   li(ng-class="{ active: active('/about') }")
                     a(href="#/about") About
+              .navbar-right
+                .navbar-right(ng-show="active('/')")
+                  a(href="#/login").btn.btn-default.navbar-btn Sign in
+                  p.navbar-text.navbar-right
+                    | Or, 
+                    a(href="#") create an account
+                .navbar-right(ng-show="!active('/')")
+                  a.navbar-right.btn.btn-default.navbar-btn Log out
   div(ng-view)
   
   script(type="text/javascript", src="/components/jquery/jquery.min.js")
   script(type="text/javascript", src="/components/bootstrap/dist/js/bootstrap.min.js")
   script(type="text/javascript", src="/components/firebase/firebase.js")
+  script(type="text/javascript", src="/components/firebase-simple-login/firebase-simple-login.js")
   script(type="text/javascript", src="/components/angular/angular.js")
-  script(type="text/javascript", src="/components/angular-route/angular-route.min.js")
   script(type="text/javascript", src="/components/angularfire/angularfire.min.js")
+  script(type="text/javascript", src="/components/angular-route/angular-route.min.js")
   script(type="text/javascript", src="/app/app.js")
   script(type="text/javascript", src="/app/config.js")
   script(type="text/javascript", src="/app/services/firebaseref.js")

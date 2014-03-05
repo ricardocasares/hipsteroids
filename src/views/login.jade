@@ -1,0 +1,28 @@
+.container(ng-controller="LoginCtrl")
+  .row(ng-cloak='ng-cloak')
+    .col-md-12
+      fieldset
+        h3.page-header Oauth
+        p
+      p  
+      form(role='form')
+        fielset
+          legend Email/Password
+          .row
+            .col-md-6
+              .form-group
+                label email
+                input.form-control(type='text', ng-model='email')
+              .form-group
+                label password
+                input.form-control(type='password', ng-model='pass')
+              .form-group(ng-show='createMode')
+                label confirm pass
+                input.form-control(type='password', ng-model='confirm')
+              button.btn.btn-primary(ng-click='loginPassword()', ng-hide='createMode') Log In
+              button.btn.btn-default(ng-click='createMode = true', ng-hide='createMode') Register
+              button.btn.btn-success(ng-show='createMode', ng-click='createAccount()') Create Account
+              button.btn.btn-default(ng-show='createMode', ng-click='createMode = false') Cancel
+      br
+      .alert.alert-danger(ng-show='err')
+        strong {{err}}
