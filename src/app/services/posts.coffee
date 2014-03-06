@@ -3,23 +3,23 @@ angular.module 'hipster.services.posts', [
 ]
 .factory 'Posts', [
   'angularFireCollection'
-  'FireRef'
+  'firebaseRef'
   (angularFireCollection, FireRef) ->
     return (
       collection: (cb) ->
-        angularFireCollection FireRef.posts(), cb
+        angularFireCollection firebaseRef.posts(), cb
 
       find: (postId) ->
-        FireRef.posts().child '/' + postId
+        firebaseRef.posts().child '/' + postId
 
       create: (post) ->
-        FireRef.posts().push(
+        firebaseRef.posts().push(
           title: post.title
           body: post.body
         ).name()
 
       removePost: (postId) ->
-        post = FireRef.posts().child('/' + postId)
+        post = firebaseRef.posts().child('/' + postId)
         post.remove()
     )
 ]

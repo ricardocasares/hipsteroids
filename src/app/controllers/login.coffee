@@ -44,7 +44,7 @@ angular.module 'hipster'
         else
           # must be logged in before I can write to my profile
           $scope.login ->
-            simpleLogin.createProfile user.id, user.email
+            
             $location.path '/account'
     return
 
