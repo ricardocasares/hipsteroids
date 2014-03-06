@@ -1,13 +1,8 @@
-angular.module 'hipster.services.posts', [
-  'hipster.services.firebaseref'
-]
-.factory 'Posts', [
-  'angularFireCollection'
-  'firebaseRef'
-  (angularFireCollection, FireRef) ->
+angular.module 'hipster'
+.service 'Posts', (firebaseRef) ->
     return (
-      collection: (cb) ->
-        angularFireCollection firebaseRef.posts(), cb
+      all: () ->
+        firebaseRef.base()
 
       find: (postId) ->
         firebaseRef.posts().child '/' + postId
@@ -22,4 +17,3 @@ angular.module 'hipster.services.posts', [
         post = firebaseRef.posts().child('/' + postId)
         post.remove()
     )
-]

@@ -1,7 +1,5 @@
 angular.module 'hipster'
-.controller 'PostsCtrl', [
-  '$scope'
-  ($scope)->
+.controller 'PostsCtrl', ($scope)->
 
     $scope.posts = [
       {
@@ -20,4 +18,3 @@ angular.module 'hipster'
 
     $scope.savePost = (post)->
       $scope.posts.push angular.copy(post)
-]

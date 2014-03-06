@@ -4,8 +4,9 @@ angular.module 'hipster.services.firebaseref', []
   'Firebase'
   (FBURL, Firebase) ->
     return (
-      path: (path)->
-        new Firebase(FBURL + path)
+      
+      base: ()->
+        new Firebase(FBURL)
 
       posts: ->
         new Firebase(FBURL + '/posts')
