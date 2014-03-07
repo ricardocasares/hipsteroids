@@ -1,8 +1,4 @@
-angular.module 'hipster', [
-  'hipster.services.firebaseref'
-  'hipster.config'
-  'firebase'
-]
+angular.module 'hipster'
 
 .run (loginSvc)->
   loginSvc.init()
@@ -29,6 +25,14 @@ angular.module 'hipster', [
       else 
         auth.$login provider
         .then user, error
+
+    signup: (email, password, cb) ->
+        auth.$createUser email, password
+        .then (user)->
+            cb null,user
+          ,
+          (error)-> 
+            cb error, null
     
     logout: ()->
       auth.$logout()

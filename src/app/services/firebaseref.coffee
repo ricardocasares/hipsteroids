@@ -1,4 +1,4 @@
-angular.module 'hipster.services.firebaseref', ['firebase']
+angular.module 'hipster'
 .factory 'firebaseRef',
   (FBURL) ->
     return (

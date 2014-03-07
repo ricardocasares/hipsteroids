@@ -1,4 +1,4 @@
-angular.module 'hipster.config', ['ngRoute','security']
+angular.module 'hipster', ['ngRoute','security','firebase']
 .constant 'loginRedirectPath', '/login'
 .constant 'FBURL', 'https://hipsteroids.firebaseio.com'
 .constant 'FBURL', 'https://hipsteroids.firebaseio.com'
@@ -8,8 +8,6 @@ angular.module 'hipster.config', ['ngRoute','security']
       templateUrl: 'views/posts.html'
     .when '/login',
       templateUrl: 'views/login.html'
-    .when '/signup',
-      templateUrl: 'views/signup.html'
     .when '/posts',
       templateUrl: 'views/posts.html'
     .when '/admin/posts',
