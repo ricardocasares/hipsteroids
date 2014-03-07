@@ -19,13 +19,20 @@
             ng-required="true",
             placeholder="Enter post body"
           )
-        button.btn.btn-primary(
-          ng-disabled="postForm.$invalid",
-          ng-click='save(new)',
-          type='button'
-        )
-          i.fa.fa-save
-          |  Save
+        .btn-toolbar
+          button.btn.btn-primary(
+            ng-disabled="postForm.$invalid",
+            ng-click='save(new)',
+            type='button'
+          )
+            i.fa.fa-save
+            |  Save
+
+          button.btn.btn-default(
+            ng-disabled="postForm.$pristine",
+            ng-click='cancel(post)',
+            type='reset'
+          )  Cancel
         
     .col-xs-12.col-sm-12.col-md-9.col-lg-9
       table.table.table-striped
