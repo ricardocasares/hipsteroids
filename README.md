@@ -32,11 +32,12 @@ You can configure your Firebase instance and constants in `src/app/config.coffee
 
 ### Todo
 
-* Handle coffee, jade and stylus compilation errors on `gulpfile.js`
-* Add firebase authentication and authorization
-* Add form validation
+* ~~Handle coffee, jade and stylus compilation errors on `gulpfile.js`~~
+* Add firebase ~~authentication and~~ authorization
+* ~~Add form validation~~
 * Make use of directives and filters
-* Setup unit testing
+* ~~Setup unit testing~~
+* Create tests
 
 ### Contribute
 
