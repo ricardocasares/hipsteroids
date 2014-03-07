@@ -28,7 +28,7 @@ Plus, you should have a server running on http://localhost:3000.
 The server is setup with livereload, so any change you make on the `src` folder should be reflected on the `build` folder and automatically refresh your browser.
 
 ### Configure
-You can configure your Firebase instance and constants in `src/app/config.coffee`
+You can configure your Firebase instance and constants in `src/app/app.coffee`
 
 ### Todo
 
