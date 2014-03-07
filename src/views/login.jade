@@ -4,12 +4,14 @@
       i.fa.fa-sign-in
       |  Sign in
     p
-      a(ng-click="loginWith('facebook')").btn.btn-default.btn-block.facebook
+      a(ng-click="login('facebook')").btn.btn-default.btn-block.facebook
         i.fa.fa-facebook
-      a(ng-click="loginWith('twitter')").btn.btn-default.btn-block.google
+      a(ng-click="login('google')").btn.btn-default.btn-block.google
         i.fa.fa-google-plus
-      a(ng-click="loginWith('twitter')").btn.btn-default.btn-block.twitter
+      a(ng-click="login('twitter')").btn.btn-default.btn-block.twitter
         i.fa.fa-twitter
+      a(ng-click="login('github')").btn.btn-default.btn-block.github
+        i.fa.fa-github
     hr
     .alert.alert-danger(ng-show="err")
       button.close(type='button', data-dismiss='alert', aria-hidden='true') &times;
@@ -32,7 +34,7 @@
       input(type="checkbox", ng-model="rememberMe")
       | Remember me
     p
-      button(ng-disabled="loginForm.$invalid || loginForm.$pristine", ng-click="login()").btn.btn-primary.btn-block
+      button(ng-disabled="loginForm.$invalid || loginForm.$pristine", ng-click="login('password')").btn.btn-primary.btn-block
         i.fa.fa-sign-in
         |   Sign in
     p.text-muted.text-center

@@ -5,9 +5,9 @@ angular.module 'hipster'
   $scope.email = null
   $scope.rememberMe = false
 
-  $scope.login = ()->
+  $scope.login = (provider)->
     $scope.err = false
-    loginSvc.login $scope.email, $scope.password, $scope.rememberMe, (err,user)->
+    loginSvc.login provider, $scope.email, $scope.password, $scope.rememberMe, (err,user)->
       if err
         $scope.err = err.message
 

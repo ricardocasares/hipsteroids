@@ -15,15 +15,20 @@ angular.module 'hipster', [
       auth = $firebaseSimpleLogin firebaseRef.base()
       return auth
     
-    login: (email,password, rememberMe, cb) ->
-      auth.$login 'password',
-        email: email
-        password: password
-        rememberMe: rememberMe
-      .then (user)->
-        cb null,user
-      , (error)->
-        cb error, null
+    login: (provider, email, password, rememberMe, cb) ->
+      
+      user = (user)-> cb null,user
+      error = (error)-> cb error, null
+
+      if provider is 'password'
+        auth.$login 'password',
+          email: email
+          password: password
+          rememberMe: rememberMe
+        .then user, error
+      else 
+        auth.$login provider
+        .then user, error
     
     logout: ()->
       auth.$logout()

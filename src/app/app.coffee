@@ -1,6 +1,6 @@
 angular.module 'hipster.config', ['ngRoute','security']
 .constant 'loginRedirectPath', '/login'
-.constant 'loginProviders', 'facebook,twitter,password'
+.constant 'FBURL', 'https://hipsteroids.firebaseio.com'
 .constant 'FBURL', 'https://hipsteroids.firebaseio.com'
 .config ($routeProvider, $locationProvider) ->
   $routeProvider
