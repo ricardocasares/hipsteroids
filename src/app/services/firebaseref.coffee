@@ -1,8 +1,6 @@
-angular.module 'hipster.services.firebaseref', []
-.factory 'firebaseRef', [
-  'FBURL'
-  'Firebase'
-  (FBURL, Firebase) ->
+angular.module 'hipster.services.firebaseref', ['firebase']
+.factory 'firebaseRef',
+  (FBURL) ->
     return (
       
       base: ()->
@@ -14,4 +12,3 @@ angular.module 'hipster.services.firebaseref', []
       users: ->
         new Firebase(FBURL + '/users')
     )
-]

@@ -1,20 +1,27 @@
 angular.module 'hipster'
-.controller 'AdminPostsCtrl', ($scope)->
+.controller 'AdminPostsCtrl', ($scope, Posts)->
 
-    $scope.posts = [
-      {
-        title: "This is a post"
-        body: "And this is it's body"
-      }
-      {
-        title: "This is another post"
-        body: "And, you know what? this is it's body too"
-      }
-    ]
+    $scope.posts = Posts.all()
+    
+    $scope.new =
+      idx: null 
+      title: ''
+      body: ''
 
-    $scope.new = 
-      title: 'New post'
-      body: 'Come on, add a post'
+    $scope.save = (post)->
+      Posts.save(post)
+      $scope.cancel()
 
-    $scope.savePost = (post)->
-      $scope.posts.push angular.copy(post)
+    $scope.cancel = ()->
+      $scope.new =
+        idx: null 
+        title: ''
+        body: ''
+
+    $scope.remove = (idx)->
+      if idx is $scope.new.idx then $scope.cancel()
+      Posts.remove(idx)
+
+    $scope.update = (idx, post)->
+      $scope.new = post
+      $scope.new.idx = idx

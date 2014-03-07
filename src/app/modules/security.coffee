@@ -1,12 +1,6 @@
 angular.module 'security', []
-.run [
-  '$injector'
-  '$location'
-  '$rootScope'
-  'loginRedirectPath'
-  ($injector, $location, $rootScope, loginRedirectPath) ->
-    new RouteSecurityManager($location, $rootScope, $injector.get('$route'), loginRedirectPath)  if $injector.has('$route')
-]
+.run ($injector, $location, $rootScope, loginRedirectPath) ->
+  new RouteSecurityManager($location, $rootScope, $injector.get('$route'), loginRedirectPath)  if $injector.has('$route')
 
 RouteSecurityManager = ($location, $rootScope, $route, path) ->
   @_route = $route

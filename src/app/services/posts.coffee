@@ -1,19 +1,40 @@
 angular.module 'hipster'
-.service 'Posts', (firebaseRef) ->
+
+.run (Posts)->
+  Posts.init()
+
+.service 'Posts', (firebaseRef, $firebase) ->
+    
+    ref = null
+    
     return (
+      init: () ->
+        ref = firebaseRef.posts()
+        
       all: () ->
-        firebaseRef.base()
+        $firebase(ref)
 
-      find: (postId) ->
-        firebaseRef.posts().child '/' + postId
+      find: (idx) ->
+        $firebase(ref).$child(@getIndex(idx))
 
-      create: (post) ->
-        firebaseRef.posts().push(
+      save: (post) ->
+        if post.idx?
+          @update(post)
+          return
+        $firebase(ref).$add(
           title: post.title
           body: post.body
-        ).name()
+        )
 
-      removePost: (postId) ->
-        post = firebaseRef.posts().child('/' + postId)
-        post.remove()
+      update: (post) ->
+        idx = post.idx
+        delete post.idx
+        @find(idx).$update(post)
+
+      remove: (idx) ->
+        @find(idx).$remove()
+
+      getIndex: (idx)->
+        keys = @all().$getIndex()
+        keys[idx]
     )

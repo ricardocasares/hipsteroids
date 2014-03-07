@@ -1,7 +1,7 @@
 angular.module 'hipster', [
-  'firebase'
   'hipster.services.firebaseref'
   'hipster.config'
+  'firebase'
 ]
 
 .run (loginSvc)->
