@@ -1,17 +1,6 @@
 .container(ng-controller="PostsCtrl")
   .row
-    .col-xs-12.col-sm-12.col-md-3.col-lg-3
-      h3.page-header Add new post
-      form(name='post', method='POST', role='form')
-        .form-group
-          label(for='title') Title
-          input#title.form-control(ng-model='new.title', name='title', type='text', placeholder='Enter post title')
-        .form-group
-          label(for='body') Body
-          textarea#body.form-control(ng-model='new.body',name='body',placeholder="Enter post body")
-        button.btn.btn-default(ng-click='savePost(new)',type='submit') Submit 
-        
-    .col-xs-12.col-sm-12.col-md-9.col-lg-9
+    .col-xs-12
       h3.page-header Recent posts
       .post(ng-repeat="post in posts")
         .media

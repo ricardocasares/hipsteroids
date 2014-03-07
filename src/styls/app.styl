@@ -5,10 +5,12 @@ body
   max-width 330px
   padding 15px
   margin 0 auto
+  margin-top 20px
 
 .form-signin .form-signin-heading,
 .form-signin .checkbox
   margin-bottom 10px
+  color #999
 
 .form-signin .checkbox
   font-weight normal
@@ -33,3 +35,34 @@ body
   margin-bottom 10px
   border-top-left-radius 0
   border-top-right-radius 0
+
+google = #D94C31
+twitter = #55ACEE
+facebook = #1F4189
+
+.google
+  border-color darken(google,10%)
+  background google
+  color #FFF
+  &:hover
+    background darken(google,10%)
+    border-color darken(google,50%)
+    color #FFF
+
+.twitter
+  border-color darken(twitter,10%)
+  background twitter
+  color #FFF
+  &:hover
+    background darken(twitter,25%)
+    border-color darken(twitter,50%)
+    color #FFF
+
+.facebook
+  border-color darken(facebook,10%)
+  background facebook
+  color #FFF
+  &:hover
+    background darken(facebook,15%)
+    border-color darken(facebook,50%)
+    color #FFF

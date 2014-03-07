@@ -3,10 +3,12 @@ angular.module 'hipster'
   
   $scope.password = null
   $scope.email = null
+  $scope.rememberMe = false
 
   $scope.login = ()->
-    loginSvc.login $scope.email, $scope.password, (err,user)->
-      console.log err
-      console.log user
+    $scope.err = false
+    loginSvc.login $scope.email, $scope.password, $scope.rememberMe, (err,user)->
+      if err
+        $scope.err = err.message
 
   $scope.logout = loginSvc.logout

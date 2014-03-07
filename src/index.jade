@@ -1,7 +1,9 @@
 doctype html
 head
   title Hipsteroids
+  meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0")
   link(rel="stylesheet", type="text/css", href="/components/bootstrap/dist/css/bootstrap.min.css")
+  link(rel="stylesheet", type="text/css", href="/components/fontawesome/css/font-awesome.min.css")
   link(rel="stylesheet", type="text/css", href="/css/app.css")
 body(ng-app="hipster", ng-cloak="ng-cloak")
   .navbar.navbar-default.navbar-fixed-top(ng-controller="NavCtrl", role="navigation")
@@ -11,7 +13,8 @@ body(ng-app="hipster", ng-cloak="ng-cloak")
                   span.icon-bar
                   span.icon-bar
                   span.icon-bar
-              a.navbar-brand(href="/") Hipsteroids
+              a.navbar-brand(href="/")
+                i.fa.fa-home
           .collapse.navbar-collapse
               ul.nav.navbar-nav
                   li(ng-class="{ active: active('/') }")
@@ -20,14 +23,19 @@ body(ng-app="hipster", ng-cloak="ng-cloak")
                     a(href="#/posts") Posts
                   li(ng-class="{ active: active('/about') }")
                     a(href="#/about") About
+                  li(ng-class="{ active: active('/admin/posts') }", ng-show-auth="login")
+                    a(href="#/admin/posts")
+                      i.fa.fa-cog
+                      |  Admin
               .navbar-right
                 div(ng-show-auth="logout")
-                  a(href="#/login").btn.btn-default.navbar-btn Sign in
-                  p.navbar-text.navbar-right
-                    | Or, 
-                    a(href="#") create an account
+                  a(href="#/login").btn.btn-default.navbar-btn
+                    i.fa.fa-sign-in
+                    |  Sign in
                 div(ng-show-auth="login")
-                  a(ng-controller="LoginCtrl", ng-click="logout()").btn.btn-default.navbar-btn Log out
+                  a(ng-controller="LoginCtrl", ng-click="logout()").btn.btn-default.navbar-btn
+                    i.fa.fa-sign-out
+                    |  Sign out
   div(ng-view)
   
   script(type="text/javascript", src="/components/jquery/jquery.min.js")
@@ -39,11 +47,13 @@ body(ng-app="hipster", ng-cloak="ng-cloak")
   script(type="text/javascript", src="/components/angular-route/angular-route.min.js")
   script(type="text/javascript", src="/app/app.js")
   script(type="text/javascript", src="/app/config.js")
+  script(type="text/javascript", src="/app/modules/routesecurity.js")
   script(type="text/javascript", src="/app/services/firebaseref.js")
   script(type="text/javascript", src="/app/services/login.js")
   script(type="text/javascript", src="/app/services/posts.js")
   script(type="text/javascript", src="/app/controllers/nav.js")
   script(type="text/javascript", src="/app/controllers/posts.js")
+  script(type="text/javascript", src="/app/controllers/admin/posts.js")
   script(type="text/javascript", src="/app/controllers/about.js")
   script(type="text/javascript", src="/app/controllers/login.js")
   script(type="text/javascript", src="/app/directives/auth.js")

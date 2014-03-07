@@ -1,5 +1,5 @@
 angular.module 'hipster'
-.controller 'PostsCtrl', ($scope)->
+.controller 'AdminPostsCtrl', ($scope)->
 
     $scope.posts = [
       {
@@ -11,3 +11,10 @@ angular.module 'hipster'
         body: "And, you know what? this is it's body too"
       }
     ]
+
+    $scope.new = 
+      title: 'New post'
+      body: 'Come on, add a post'
+
+    $scope.savePost = (post)->
+      $scope.posts.push angular.copy(post)

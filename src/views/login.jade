@@ -1,6 +1,19 @@
 .container(ng-controller="LoginCtrl")
   form(name="loginForm").form-signin
-    h2.form-signin-heading Sign in
+    h4.form-signin-heading
+      i.fa.fa-sign-in
+      |  Sign in
+    p
+      a(ng-click="loginWith('facebook')").btn.btn-default.btn-block.facebook
+        i.fa.fa-facebook
+      a(ng-click="loginWith('twitter')").btn.btn-default.btn-block.google
+        i.fa.fa-google-plus
+      a(ng-click="loginWith('twitter')").btn.btn-default.btn-block.twitter
+        i.fa.fa-twitter
+    hr
+    .alert.alert-danger(ng-show="err")
+      button.close(type='button', data-dismiss='alert', aria-hidden='true') &times;
+      | {{err}}
     input(
       type="email",
       name="email",
@@ -18,4 +31,10 @@
     label.checkbox
       input(type="checkbox", ng-model="rememberMe")
       | Remember me
-    button(ng-disabled="loginForm.$invalid || loginForm.$pristine", ng-click="login()").btn.btn-primary.btn-block Sign in
+    p
+      button(ng-disabled="loginForm.$invalid || loginForm.$pristine", ng-click="login()").btn.btn-primary.btn-block
+        i.fa.fa-sign-in
+        |   Sign in
+    p.text-muted.text-center
+      | Or 
+      a(href="#/signup") create an account

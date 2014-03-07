@@ -12,7 +12,8 @@
     "firebase": "latest",
     "angularfire": "latest",
     "bootstrap": "latest",
-    "jquery": "2.0.3"
+    "jquery": "2.0.3",
+    "fontawesome": "latest"
   },
   "devDependencies": {
     "angular-mocks": "latest"
