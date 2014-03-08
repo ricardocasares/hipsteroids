@@ -2,6 +2,11 @@ angular.module 'hipster'
 .controller 'AdminPostsCtrl', ($scope, Posts)->
 
     $scope.posts = Posts.all()
+    
+    $scope.new =
+      idx: null 
+      title: ''
+      body: ''
 
     $scope.save = (post)->
       Posts.save(post)
