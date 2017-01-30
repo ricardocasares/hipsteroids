@@ -15,7 +15,7 @@
     "gulp-serve": "latest",
     "gulp-stylus": "latest",
     "gulp-uglify": "latest",
-    "gulp-notify": "^1.0.0-beta",
+    "gulp-notify": "^3.0.0",
     "gulp-changed": "latest",
     "gulp-plumber": "latest",
     "phantomjs": "latest",
