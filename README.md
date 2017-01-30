@@ -1,5 +1,7 @@
 hipsteroids
 ===========
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/ricardocasares/hipsteroids.svg)](https://greenkeeper.io/)
 Hipster tools for building angular apps
 
 ### Description
